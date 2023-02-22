@@ -16,8 +16,21 @@ function createCard(name, description, pictureUrl, starts, ends, location) {
   `;
 }
 
+var alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+function alert(message, type) {
+  var wrapper = document.createElement("div");
+  wrapper.innerHTML =
+    '<div class="alert mb-0 alert-' +
+    type +
+    ' alert-dismissible" role="alert">' +
+    message +
+    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+  alertPlaceholder.append(wrapper);
+}
+
 window.addEventListener("DOMContentLoaded", async () => {
-  const url = "http://localhost:8000/api/conferences/";
+  const url = "http://localhost:8000/api/conferences/5765";
   try {
     const response = await fetch(url);
     console.log(response);
@@ -61,6 +74,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       }
     }
   } catch (e) {
+    alert(`${e} Could not fetch the url`, "danger");
     console.error("error", e);
   }
 });
