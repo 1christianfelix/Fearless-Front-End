@@ -163,6 +163,7 @@ def api_list_locations(request):
         )
     else:
         content = json.loads(request.body)
+        print('testtesttest', content)
 
         try:
             state = State.objects.get(abbreviation=content["state"])
@@ -243,7 +244,7 @@ def api_list_states(request):
     # abbreviation for each state
     # Append the dictionary to the list
     for x in states:
-        dictionary = {x.name: x.abbreviation}
+        dictionary = {'name': x.name, "abbreviation": x.abbreviation}
         state_list.append(dictionary)
 
     return JsonResponse({"states": state_list})
