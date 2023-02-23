@@ -1,7 +1,6 @@
 function createCard(name, description, pictureUrl, starts, ends, location) {
   return `
-    <div class="col-4 mb-2">
-      <div class="card shadow">
+      <div class="card shadow p-3 mb-2 bg-body-tertiary rounded">
         <img src="${pictureUrl}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">${name}</h5>
@@ -12,7 +11,6 @@ function createCard(name, description, pictureUrl, starts, ends, location) {
           ${starts} - ${ends}
         </div>
       </div>
-    </div>
   `;
 }
 
@@ -30,7 +28,9 @@ function alert(message, type) {
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  const url = "http://localhost:8000/api/conferences/5765";
+  const url = "http://localhost:8000/api/conferences/";
+  const columns = document.querySelectorAll(".col-4");
+  let colIndx = 0;
   try {
     const response = await fetch(url);
     console.log(response);
@@ -68,8 +68,9 @@ window.addEventListener("DOMContentLoaded", async () => {
             conferenceEnd,
             location
           );
-          const column = document.querySelector(".row");
+          const column = columns[colIndx % 3];
           column.innerHTML += html;
+          colIndx = (colIndx + 1) % 3;
         }
       }
     }
