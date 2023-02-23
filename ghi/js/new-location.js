@@ -26,7 +26,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   // POSTing Form Data
   // Submission listener
-
   const formTag = document.getElementById("create-location-form");
   formTag.addEventListener("submit", async (event) => {
     event.preventDefault();
