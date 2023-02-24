@@ -19,4 +19,32 @@ window.addEventListener("DOMContentLoaded", async () => {
     // Here, remove the 'd-none' class from the select tag
     selectTag.classList.remove("d-none");
   }
+
+  // POSTing Form Data
+  // Submission listener
+  const formTag = document.getElementById("create-attendee-form");
+  formTag.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formData = new FormData(formTag);
+    console.log(formData);
+    let data = Object.fromEntries(formData);
+    const json = JSON.stringify(data);
+    console.log(data);
+    console.log(json);
+    const attendeeUrl = `http://localhost:8001/${data["conference"]}attendees/`;
+    const fetchConfig = {
+      method: "post",
+      body: json,
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await fetch(attendeeUrl, fetchConfig);
+    if (response.ok) {
+      formTag.reset();
+      const success = document.getElementById("success-message");
+      success.classList.remove("d-none");
+      formTag.classList.add("d-none");
+    }
+  });
 });
