@@ -4,7 +4,10 @@ from datetime import datetime
 
 
 class DateEncoder(JSONEncoder):
+    # print('jere')
+
     def default(self, o):
+        # print('-----', type(o))
         if isinstance(o, datetime):
             return o.isoformat()
         else:
@@ -28,6 +31,7 @@ class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
             if hasattr(o, "get_api_url"):
                 d["href"] = o.get_api_url()
             for property in self.properties:
+                # print(property, type(property))
                 value = getattr(o, property)
                 if property in self.encoders:
                     encoder = self.encoders[property]

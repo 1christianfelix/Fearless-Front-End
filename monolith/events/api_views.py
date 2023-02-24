@@ -79,6 +79,7 @@ def api_list_conferences(request):
         )
     else:
         content = json.loads(request.body)
+        print('--------------', type(content))
 
         # Get the Location object and put it in the content dict
         try:
@@ -135,7 +136,7 @@ def api_show_conference(request, pk):
     )
 
 
-@require_http_methods(["GET", "POST"])
+@ require_http_methods(["GET", "POST"])
 def api_list_locations(request):
     """
     Lists the location names and the link to the location.
@@ -184,7 +185,7 @@ def api_list_locations(request):
         )
 
 
-@require_http_methods(["DELETE", "GET", "PUT"])
+@ require_http_methods(["DELETE", "GET", "PUT"])
 def api_show_location(request, pk):
     """
     Returns the details for the Location model specified
@@ -232,7 +233,7 @@ def api_show_location(request, pk):
         )
 
 
-@require_http_methods(["GET"])
+@ require_http_methods(["GET"])
 def api_list_states(request):
     # Get the states from the database ordered by name
     if request.method == "GET":
