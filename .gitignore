@@ -1,7 +1,7 @@
 events/keys.py
 database/data/*
 maildir/
-
+ghi/attendees/node_modules
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
