@@ -39,7 +39,7 @@ function LocationForm() {
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
-      header: {
+      headers: {
         "Content-Type": "application/json",
       },
     };
@@ -62,6 +62,8 @@ function LocationForm() {
     if (response.ok) {
       const data = await response.json();
       setStates(data.states);
+      console.log(states);
+      console.log("hi");
     }
   };
 
